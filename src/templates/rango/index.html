@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Index {% endblock %}
+{% block body_block %}
+    <p>visits: {{ visits }}</p>
+     {% if user.is_authenticated %}
+     <div class="page-header">
+     <h1>Rango says...Hello {{user.username}}</h1><br />
+     {% else %}
+     <h1>Rango says Hello world</h1>
+     {%endif%}
+     </div>
+     
+     <div class="panel panel-primary">
+       <div class="panel-heading">
+       <h4>categories</h4>
+     {% if categories %}
+     <ul class ="list-group">
+         {% for category in categories %}
+         <li class="list-group-item"><a href="/rango/category/{{category.slug}}">{{category.name}}</a></li>
+         {% endfor %}
+     </ul>
+     {% else %}
+         <strong>There are no categories present.</strong>
+     {% endif %}
+     </div>
+     <div class="panel-heading">
+     <h4>pages</h4>
+     {% if pages %}
+      <ul class="list-group">
+      {% for page in pages %}
+        <li class="list-group-item"><a href="{{page.url}}">{{page.title}}</a></li>
+        {% endfor %}
+        </ul>
+      {% else %}
+       <strong> There are no categories present.</strong>
+       {% endif %}
+      
+      </div>  
+      </div>
+{% endblock %}
